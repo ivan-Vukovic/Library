@@ -2,6 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Publisher
+ *
+ * @ORM\Table(name="publisher")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PublisherRepository")
+ */
 class Publisher {
 
     /**
@@ -11,7 +19,7 @@ class Publisher {
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $publisherId;
+    private $id;
 
     /**
      * @var string
@@ -22,29 +30,29 @@ class Publisher {
 
     /**
      * Publisher constructor.
-     * @param $publisherId
+     * @param $id
      * @param $publisherName
      */
-    public function __construct($publisherId, $publisherName)
+    public function __construct($id, $publisherName)
     {
-        $this->publisherId = $publisherId;
+        $this->id = $id;
         $this->publisherName = $publisherName;
     }
 
     /**
      * @return mixed
      */
-    public function getPublisherId()
+    public function getid()
     {
-        return $this->publisherId;
+        return $this->id;
     }
 
     /**
-     * @param mixed $publisherId
+     * @param mixed $id
      */
-    public function setPublisherId($publisherId)
+    public function setid($id)
     {
-        $this->publisherId = $publisherId;
+        $this->id = $id;
     }
 
     /**

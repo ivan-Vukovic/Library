@@ -2,8 +2,16 @@
 
 namespace AppBundle\Entity;
 
-/**@Entity */
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
+/**
+ * Book
+ *
+ * @ORM\Table(name="book")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository")
+ */
 class Book {
 
     /**
@@ -13,7 +21,7 @@ class Book {
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $bookId;
+    private $id;
 
     /**
      * @var string
@@ -23,13 +31,11 @@ class Book {
     private $title;
 
     /**
-     * @var array
-     * @ManyToMany (targetEntity="Author")
-     * @JoinTable (name="users_groups",
-     *      joinColumns={@JoinColumn(name="bookId", referencedColumnName="bookId")},
-     *      inverseJoinColumns={@JoinColumn(name="authorId", referencedColumnName="authors")}
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author")
+     * @ORM\JoinTable(name="books_authors",
+     *      joinColumns={@JoinColumn(name="book_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="author_id", referencedColumnName="id")}
      *      )
-     * @ORM\Column(type="json_array")
      */
     private $authors;
 
@@ -41,16 +47,16 @@ class Book {
     private $publicationDate;
 
     /**
-     * @var int
-     * @ManyToOne (targetEntity="Publisher", mappedBy= "publisherId")
-     * @ORM\Column(type="integer")
+     * @var Publisher
+     * @ManyToOne(targetEntity="AppBundle\Entity\Publisher")
+     * @JoinColumn(nullable=false)
      */
     private $publisher;
 
     /**
-     * @var int
-     * @ManyToOne (targetEntity="Genre", mappedBy= "genreId")
-     * @ORM\Column(type="integer")
+     * @var Genre
+     * @ManyToOne(targetEntity="AppBundle\Entity\Genre")
+     * @JoinColumn(nullable=false)
      */
     private $genre;
 
@@ -70,7 +76,7 @@ class Book {
 
     /**
      * Book constructor.
-     * @param $bookId
+     * @param $id
      * @param $title
      * @param $authors
      * @param $publicationDate
@@ -79,9 +85,9 @@ class Book {
      * @param $price
      * @param $actionPrice
      */
-    public function __construct($bookId, $title, $authors, $publicationDate, $publisher, $genre, $price, $actionPrice)
+    public function __construct($id, $title, $authors, $publicationDate, $publisher, $genre, $price, $actionPrice)
     {
-        $this->bookId = $bookId;
+        $this->id = $id;
         $this->title = $title;
         $this->authors = $authors;
         $this->publicationDate = $publicationDate;
@@ -94,17 +100,17 @@ class Book {
     /**
      * @return mixed
      */
-    public function getbookId()
+    public function getid()
     {
-        return $this->bookId;
+        return $this->id;
     }
 
     /**
-     * @param mixed $bookId
+     * @param mixed $id
      */
-    public function setbookId($bookId)
+    public function setid($id)
     {
-        $this->bookId = $bookId;
+        $this->id = $id;
     }
 
     /**

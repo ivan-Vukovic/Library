@@ -2,6 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Genre
+ *
+ * @ORM\Table(name="genre")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GenreRepository")
+ */
 class Genre{
 
     /**
@@ -11,7 +19,9 @@ class Genre{
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $genreId;
+    private $id;
+
+
 
     /**
      * @var string
@@ -22,29 +32,29 @@ class Genre{
 
     /**
      * Genre constructor.
-     * @param $genreId
+     * @param $id
      * @param $genreName
      */
-    public function __construct($genreId, $genreName)
+    public function __construct($id, $genreName)
     {
-        $this->genreId = $genreId;
+        $this->id = $id;
         $this->genreName = $genreName;
     }
 
     /**
      * @return mixed
      */
-    public function getGenreId()
+    public function getid()
     {
-        return $this->genreId;
+        return $this->id;
     }
 
     /**
-     * @param mixed $genreId
+     * @param mixed $id
      */
-    public function setGenreId($genreId)
+    public function setid($id)
     {
-        $this->genreId = $genreId;
+        $this->id = $id;
     }
 
     /**

@@ -2,6 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * Author
+ *
+ * @ORM\Table(name="author")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
+ */
 class Author {
 
     /**
@@ -11,7 +18,7 @@ class Author {
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $authorauthorauthorId;
+    private $id;
 
     /**
      * @var string
@@ -29,13 +36,13 @@ class Author {
 
     /**
      * Author constructor.
-     * @param $authorId
+     * @param $id
      * @param $name
      * @param $surname
      */
-    public function __construct($authorId, $name, $surname)
+    public function __construct($id, $name, $surname)
     {
-        $this->authorId = $authorId;
+        $this->id = $id;
         $this->name = $name;
         $this->surname = $surname;
     }
@@ -43,17 +50,17 @@ class Author {
     /**
      * @return mixed
      */
-    public function getauthorId()
+    public function getid()
     {
-        return $this->authorId;
+        return $this->id;
     }
 
     /**
-     * @param mixed $authorId
+     * @param mixed $id
      */
-    public function setauthorId($authorId)
+    public function setid($id)
     {
-        $this->authorId = $authorId;
+        $this->id = $id;
     }
 
     /**
