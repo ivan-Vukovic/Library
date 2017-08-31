@@ -25,11 +25,15 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
             form_login:
-              login_path: login
-              check_path: login
+              login_path: security_login
+              check_path: security_login
 
             logout:
                 # The route name the user can go to in order to logout
                 path: security_logout
                 # The name of the route to redirect to after logging out
                 target: homepage
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            provider: db_provider
+
