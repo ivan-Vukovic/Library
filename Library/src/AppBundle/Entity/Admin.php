@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
  * Admin
  *
  * @ORM\Table(name="admin")
- * @UniqueEntity(fields="username", message="Username already taken")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AdminRepository")
  */
 class Admin implements AccessDecisionManagerInterface
@@ -26,14 +25,14 @@ class Admin implements AccessDecisionManagerInterface
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
@@ -106,14 +105,6 @@ class Admin implements AccessDecisionManagerInterface
      *
      * @return bool true if the access is granted, false otherwise
      */
-
-    public function getSalt()
-    {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
-    }
-
     public function decide(TokenInterface $token, array $attributes, $object = null)
     {
         // TODO: Implement decide() method.
