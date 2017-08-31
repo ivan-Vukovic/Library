@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
  * @ORM\Table(name="admin")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AdminRepository")
  */
-class Admin implements AccessDecisionManagerInterface
+class Admin
 {
     /**
      * @var int
@@ -96,18 +96,9 @@ class Admin implements AccessDecisionManagerInterface
         return $this->password;
     }
 
-    /**
-     * Decides whether the access is possible or not.
-     *
-     * @param TokenInterface $token A TokenInterface instance
-     * @param array $attributes An array of attributes associated with the method being invoked
-     * @param object $object The object to secure
-     *
-     * @return bool true if the access is granted, false otherwise
-     */
-    public function decide(TokenInterface $token, array $attributes, $object = null)
+    public function getRoles()
     {
-        // TODO: Implement decide() method.
+        return array('ROLE_ADMIN');
     }
 }
 

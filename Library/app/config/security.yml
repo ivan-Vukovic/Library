@@ -1,6 +1,12 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    role_hierarchy:
+      ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+
+    access_decision_manager:
+      strategy: unanimous
+
     encoders:
       AppBundle\Entity\Admin: bcrypt
 
